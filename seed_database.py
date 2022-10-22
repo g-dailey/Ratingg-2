@@ -2,6 +2,7 @@
 
 import os
 import json
+from pickletools import read_stringnl_noescape_pair
 from random import choice, randint
 from datetime import datetime
 
@@ -31,20 +32,18 @@ for movie in movie_data:
 model.db.session.add_all(movies_in_db)
 model.db.session.commit()
 
-# random_movie = choice(movies_in_db[:]['title'])
-for movie in movies_in_db:
-  random_movie = choice(movie)
-print(f"****** this is {random_movie}")
-print('this is a test')
-
+list_of_users = []
 for n in range(10):
-    email = f'user{n}@test.com'  # Voila! A unique email!
-    password = 'test'
-    pass
+  email = f'user{n}@test.com'
+  password = 'test'
+  db_user = crud.create_user(email, password)
+  model.db.session.add(db_user)
 
+  for _ in range(10):
+    random_movie = choice(movies_in_db)
+    score = randint(1,5)
 
-    # rating =
+    ratings = crud.create_rating(db_user, random_movie, score)
+    model.db.session.add(ratings)
 
-    # TODO: create a user here
-
-    # TODO: create 10 ratings for the user
+model.db.session.commit()
