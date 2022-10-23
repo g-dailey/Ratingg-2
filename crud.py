@@ -27,7 +27,7 @@ def get_users():
   return User.query.all()
 
 def get_user_by_email(email):
-  return User.query.get(email)
+  return User.query.filter(User.email == email).first()
 
 def create_rating(user, movie, score):
   rating = Rating(user=user, movie=movie, score=score)
