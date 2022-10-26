@@ -29,6 +29,7 @@ for movie in movie_data:
   db_movie = crud.create_movie(title, overview, release_date, poster_path)
   movies_in_db.append(db_movie)
 
+
 model.db.session.add_all(movies_in_db)
 model.db.session.commit()
 

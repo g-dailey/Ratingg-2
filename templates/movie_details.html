@@ -3,7 +3,33 @@
 {% block title %}{{ movie.title }} - Details{% endblock %}
 
 {% block body %}
+
+
+
+<form name="select-movie" class="love-movie" action="/love-movie/{{ movie.movie_id }}" method="POST">
+  <div >
+    <label for="namefield">Please Rate this Movie!</label></br>
+
+
+    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="loved_movie_key">
+      <option selected>Please Rate this Movie!</option>
+
+
+      <option >1</option>
+      <option>2</option>
+      <option >3</option>
+      <option >4</option>
+      <option >5</option>
+    </select>
+  </div>
+  <div id="dropdown-submit">
+    <input type="submit" />
+  </div>
+</form>
+
+
 <h1>{{ movie.title }}</h1>
+<h1>{{ movie.movie_id }}</h1>
 
 <p>
   {{ movie.overview }}
